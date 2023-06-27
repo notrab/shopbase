@@ -127,7 +127,7 @@ export type Product = {
   id: Scalars['ID']['output']
   name: Scalars['String']['output']
   price: Scalars['Int']['output']
-  type: Scalars['String']['output']
+  type?: Maybe<Scalars['String']['output']>
   /** when the model was updated */
   updatedAt: Scalars['DateTime']['output']
 }
@@ -148,7 +148,7 @@ export type ProductCreateInput = {
   brand: Scalars['String']['input']
   name: Scalars['String']['input']
   price?: Scalars['Int']['input']
-  type: Scalars['String']['input']
+  type?: InputMaybe<Scalars['String']['input']>
 }
 
 export type ProductCreatePayload = {
@@ -194,7 +194,7 @@ export type ProductSearchFilterInput = {
   createdAt?: InputMaybe<DateTimeSearchFilterInput>
   name?: InputMaybe<StringSearchFilterInput>
   price?: InputMaybe<IntSearchFilterInput>
-  type?: InputMaybe<StringSearchFilterInput>
+  type?: InputMaybe<StringOrNullSearchFilterInput>
   updatedAt?: InputMaybe<DateTimeSearchFilterInput>
 }
 
@@ -246,6 +246,22 @@ export type QueryProductSearchArgs = {
 export type SearchInfo = {
   __typename?: 'SearchInfo'
   totalHits: Scalars['Int']['output']
+}
+
+export type StringOrNullSearchFilterInput = {
+  ALL?: InputMaybe<Array<StringOrNullSearchFilterInput>>
+  ANY?: InputMaybe<Array<StringOrNullSearchFilterInput>>
+  NONE?: InputMaybe<Array<StringOrNullSearchFilterInput>>
+  NOT?: InputMaybe<StringOrNullSearchFilterInput>
+  eq?: InputMaybe<Scalars['String']['input']>
+  gt?: InputMaybe<Scalars['String']['input']>
+  gte?: InputMaybe<Scalars['String']['input']>
+  in?: InputMaybe<Array<Scalars['String']['input']>>
+  isNull?: InputMaybe<Scalars['Boolean']['input']>
+  lt?: InputMaybe<Scalars['String']['input']>
+  lte?: InputMaybe<Scalars['String']['input']>
+  neq?: InputMaybe<Scalars['String']['input']>
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>
 }
 
 export type StringSearchFilterInput = {
