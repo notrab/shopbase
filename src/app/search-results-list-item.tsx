@@ -19,7 +19,7 @@ export function SearchResultsListItem(props: SearchResultsListItemProps) {
 
   return (
     <li className="relative">
-      <div className="group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+      <div className="group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
         <img
           src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
           alt=""
@@ -33,10 +33,10 @@ export function SearchResultsListItem(props: SearchResultsListItemProps) {
         {product.name}
       </p>
       <p className="pointer-events-none block text-sm font-medium text-gray-500">
-        {new Intl.NumberFormat('en-gb', {
+        {new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: 'USD'
-        }).format(product.price)}
+        }).format(product.price / 100)}
       </p>
     </li>
   )
