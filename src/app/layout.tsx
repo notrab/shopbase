@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Filter from './filter'
 import { Header } from './header'
 import { Breadcrumbs } from './breadcrumbs'
+import { Suspense } from 'react'
+import Loading from './loading'
 // import { ActiveFilters } from './active-filters'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -34,7 +36,7 @@ export default function RootLayout({
                   New Items
                 </h1>
                 {/* <ActiveFilters /> */}
-                {children}
+                <Suspense fallback={<Loading />}>{children}</Suspense>
               </div>
             </div>
           </div>

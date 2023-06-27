@@ -1,7 +1,5 @@
 import { graphql } from '@/gql'
 import { SearchResultsList } from './search-results-list'
-import { Suspense } from 'react'
-import Loading from './loading'
 
 const query = graphql(/* GraphQL */ `
   query search($first: Int, $query: String, $brands_in: [String!]) {
@@ -43,11 +41,7 @@ export default async function Home({
     })
   }).then((res) => res.json())
 
-  return (
-    <Suspense fallback={<Loading />}>
-      <SearchResultsList query={data?.productSearch} />
-    </Suspense>
-  )
+  return <SearchResultsList query={data?.productSearch} />
 }
 
 export const dynamic = 'force-dynamic'
