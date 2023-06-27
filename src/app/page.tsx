@@ -44,4 +44,5 @@ export default async function Home({
   return <SearchResultsList query={data?.productSearch} />
 }
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
+export const revalidate = 0
