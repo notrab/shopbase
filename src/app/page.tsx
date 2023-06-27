@@ -1,5 +1,7 @@
 import { graphql } from '@/gql'
 import { SearchResultsList } from './search-results-list'
+import { Suspense } from 'react'
+import { Skeleton } from './skeleton'
 
 const query = graphql(/* GraphQL */ `
   query search($first: Int, $query: String, $brands_in: [String!]) {
@@ -38,11 +40,13 @@ export default async function Home({
         first,
         ...(brands_in.length && { brands_in })
       }
-    })
+    }),
+    next: { revalidate: 10 }
   }).then((res) => res.json())
 
-  return <SearchResultsList query={data?.productSearch} />
+  return (
+    <Suspense fallback={<Skeleton animated />}>
+      <SearchResultsList query={data?.productSearch} />
+    </Suspense>
+  )
 }
-
-// export const dynamic = 'force-dynamic'
-export const revalidate = 0

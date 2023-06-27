@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 export function useDebounce<T>(value: T, delay?: number): T {
@@ -55,7 +55,7 @@ export function Search() {
           <path
             d="M17.5 17.5L14.47 14.47M14.47 14.47C15.8272 13.1127 16.6667 11.2377 16.6667 9.16667C16.6667 5.02453 13.3088 1.66667 9.16666 1.66667C5.02452 1.66667 1.66666 5.02453 1.66666 9.16667C1.66666 13.3088 5.02452 16.6667 9.16666 16.6667C11.2377 16.6667 13.1127 15.8272 14.47 14.47Z"
             stroke="#ACACAC"
-            stroke-Width="1.5"
+            strokeWidth="1.5"
             strokeLinecap="round"
           />
         </svg>
@@ -64,7 +64,7 @@ export function Search() {
         type="text"
         className="rounded-md bg-gray-100 pr-3 py-2 pl-10 h-10 w-full border-0 focus:border0 focus:ring-0 focus:outline-none"
         placeholder="Search by name"
-        value={value}
+        defaultValue={value}
         onChange={handleChange}
       />
     </div>

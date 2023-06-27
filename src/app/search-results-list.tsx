@@ -1,5 +1,6 @@
 import { graphql, useFragment, type FragmentType } from '@/gql'
 import { SearchResultsListItem } from '@/app/search-results-list-item'
+import { EmptyState } from './empty-state'
 
 const SearchResultsList_ProductSearchConnectionFragment =
   graphql(/* GraphQL */ `
@@ -22,6 +23,8 @@ export function SearchResultsList(props: ProductListProps) {
     SearchResultsList_ProductSearchConnectionFragment,
     props.query
   )
+
+  if (edges.length === 0) return <EmptyState />
 
   return (
     <ul
