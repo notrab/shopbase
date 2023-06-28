@@ -61,7 +61,7 @@ export default function Filter() {
               id="allBrands"
               name="brand"
               type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600"
+              className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
               value="all"
               checked={!params.has('brand')}
               onChange={handleOnChange}
@@ -87,7 +87,7 @@ export default function Filter() {
                   id={`brand[${brand.value}]`}
                   name="brand"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-600"
+                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                   value={brand.value}
                   checked={existingParams.includes(brand.value)}
                   onChange={handleOnChange}

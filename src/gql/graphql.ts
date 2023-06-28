@@ -279,6 +279,21 @@ export type StringSearchFilterInput = {
   notIn?: InputMaybe<Array<Scalars['String']['input']>>
 }
 
+export type GetProductByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input']
+}>
+
+export type GetProductByIdQuery = {
+  __typename?: 'Query'
+  product?: {
+    __typename?: 'Product'
+    id: string
+    name: string
+    price: number
+    brand: string
+  } | null
+}
+
 export type SearchQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>
   query?: InputMaybe<Scalars['String']['input']>
@@ -372,6 +387,19 @@ export const SearchResultsList_ProductSearchConnectionFragmentFragmentDoc =
     SearchResultsList_ProductSearchConnectionFragmentFragment,
     unknown
   >
+export const GetProductByIdDocument = new TypedDocumentString(`
+    query GetProductById($id: ID!) {
+  product(by: {id: $id}) {
+    id
+    name
+    price
+    brand
+  }
+}
+    `) as unknown as TypedDocumentString<
+  GetProductByIdQuery,
+  GetProductByIdQueryVariables
+>
 export const SearchDocument = new TypedDocumentString(`
     query search($first: Int, $query: String, $brands_in: [String!]) {
   productSearch(first: $first, query: $query, filter: {brand: {in: $brands_in}}) {

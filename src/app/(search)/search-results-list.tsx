@@ -1,6 +1,6 @@
 import { graphql, useFragment, type FragmentType } from '@/gql'
-import { SearchResultsListItem } from '@/app/search-results-list-item'
-import { EmptyState } from './empty-state'
+import { SearchResultsListItem } from '@/app/(search)/search-results-list-item'
+import { EmptyState } from '@/app/(search)/empty-state'
 
 const SearchResultsList_ProductSearchConnectionFragment =
   graphql(/* GraphQL */ `

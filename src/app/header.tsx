@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Search } from './search'
+import { Search } from '@/app/search'
 
 export function Header() {
   return (
@@ -52,7 +52,7 @@ export function Header() {
               href="/"
               className="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center relative"
             >
-              <span className="bg-green-500 text-white text-xs flex items-center justify-center w-5 h-5 absolute -top-2 -right-2 rounded-md normal-nums">
+              <span className="bg-primary text-white text-xs flex items-center justify-center w-5 h-5 absolute -top-2 -right-2 rounded-md normal-nums">
                 1
               </span>
               <svg

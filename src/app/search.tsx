@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export function useDebounce<T>(value: T, delay?: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value)
@@ -19,7 +19,6 @@ export function useDebounce<T>(value: T, delay?: number): T {
 
 export function Search() {
   const router = useRouter()
-  const pathname = usePathname()
   const searchParams = useSearchParams()!
   const params = new URLSearchParams(searchParams as any)
 
@@ -39,7 +38,7 @@ export function Search() {
       params.set('query', value)
     }
 
-    router.push(`${pathname}?${params.toString()}`)
+    router.push(`/?${params.toString()}`)
   }, [debouncedValue])
 
   return (

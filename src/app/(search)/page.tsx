@@ -1,7 +1,7 @@
 import { graphql } from '@/gql'
-import { SearchResultsList } from './search-results-list'
 import { Suspense } from 'react'
-import { Skeleton } from './skeleton'
+import { Skeleton } from '@/app/skeleton'
+import { SearchResultsList } from '@/app/(search)/search-results-list'
 
 const query = graphql(/* GraphQL */ `
   query search($first: Int, $query: String, $brands_in: [String!]) {
@@ -44,9 +44,5 @@ export default async function Home({
     next: { revalidate: 10 }
   }).then((res) => res.json())
 
-  return (
-    <Suspense fallback={<Skeleton animated />}>
-      <SearchResultsList query={data?.productSearch} />
-    </Suspense>
-  )
+  return <SearchResultsList query={data?.productSearch} />
 }

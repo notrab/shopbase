@@ -12,6 +12,8 @@ import * as types from './graphql'
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  '\n  query GetProductById($id: ID!) {\n    product(by: { id: $id }) {\n      id\n      name\n      price\n      brand\n    }\n  }\n':
+    types.GetProductByIdDocument,
   '\n  query search($first: Int, $query: String, $brands_in: [String!]) {\n    productSearch(\n      first: $first\n      query: $query\n      filter: { brand: { in: $brands_in } }\n    ) {\n      ...SearchResultsList_ProductSearchConnectionFragment\n    }\n  }\n':
     types.SearchDocument,
   '\n  fragment SearchResultsList_ProductFragment on Product {\n    id\n    name\n    price\n    brand\n  }\n':
@@ -20,6 +22,12 @@ const documents = {
     types.SearchResultsList_ProductSearchConnectionFragmentFragmentDoc
 }
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query GetProductById($id: ID!) {\n    product(by: { id: $id }) {\n      id\n      name\n      price\n      brand\n    }\n  }\n'
+): typeof import('./graphql').GetProductByIdDocument
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
