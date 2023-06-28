@@ -1,6 +1,4 @@
 import { graphql } from '@/gql'
-import { Suspense } from 'react'
-import { Skeleton } from '@/app/skeleton'
 import { SearchResultsList } from '@/app/(search)/search-results-list'
 
 const query = graphql(/* GraphQL */ `
@@ -25,7 +23,7 @@ export default async function Home({
       ? [searchParams.brand]
       : searchParams.brand || []
 
-  const first = searchParams.perPage || 12
+  const first = Number(searchParams.perPage) || 12
   const term = searchParams.query
 
   const { data } = await fetch(process.env.GRAFBASE_API_URL!, {
@@ -46,3 +44,5 @@ export default async function Home({
 
   return <SearchResultsList query={data?.productSearch} />
 }
+
+export const revalidate = 0
