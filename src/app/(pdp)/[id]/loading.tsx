@@ -26,7 +26,10 @@ export default function Loading() {
             {Array(6)
               .fill('')
               .map((_, i) => (
-                <div className="rounded-lg h-5 w-10/12 bg-gray-200"></div>
+                <div
+                  key={i}
+                  className="rounded-lg h-5 w-10/12 bg-gray-200"
+                ></div>
               ))}
           </div>
         </div>
