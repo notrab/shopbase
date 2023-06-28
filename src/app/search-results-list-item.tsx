@@ -19,25 +19,30 @@ export function SearchResultsListItem(props: SearchResultsListItemProps) {
 
   return (
     <li className="relative">
-      <div className="group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-        <img
-          src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
-          alt=""
-          className="pointer-events-none object-cover group-hover:opacity-75"
-        />
-        <button type="button" className="absolute inset-0 focus:outline-none">
-          <span className="sr-only">View details for {product.name}</span>
-        </button>
+      <div className="group aspect-square overflow-hidden rounded-md bg-black flex items-center justify-center">
+        <svg
+          viewBox="0 0 13 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-8 stroke-current text-white"
+        >
+          <path
+            d="M6.8219 8.64715L6.60505 9.22218L7.02011 9.67539L10.6595 13.6492C11.8345 14.9322 10.9243 17 9.18453 17H3C1.89543 17 1 16.1046 1 15V9V3C1 1.89543 1.89543 1 3 1H6.81398C8.21196 1 9.17862 2.39764 8.68534 3.7057L6.8219 8.64715Z"
+            strokeWidth="2"
+          />
+        </svg>
       </div>
-      <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">
-        {product.name}
-      </p>
-      <p className="pointer-events-none block text-sm font-medium text-gray-500">
-        {new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD'
-        }).format(product.price / 100)}
-      </p>
+      <div className="pt-3 md:space-y-3">
+        <p className="pointer-events-none mt-2 block truncate md:text-xl font-semibold text-black">
+          {product.name}
+        </p>
+        <p className="pointer-events-none block font-medium text-sm text-black/60 normal-nums">
+          {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+          }).format(product.price / 100)}
+        </p>
+      </div>
     </li>
   )
 }
