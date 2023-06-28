@@ -24,14 +24,14 @@ export function SearchResultsList(props: ProductListProps) {
     props.query
   )
 
-  if (edges.length === 0) return <EmptyState />
+  if (!edges || edges.length === 0) return <EmptyState />
 
   return (
     <ul
       role="list"
       className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8 w-full"
     >
-      {edges.map(({ cursor, node }: any) => (
+      {edges.map(({ cursor, node }) => (
         <SearchResultsListItem key={cursor} product={node} />
       ))}
     </ul>

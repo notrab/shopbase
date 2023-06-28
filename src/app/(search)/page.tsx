@@ -1,4 +1,5 @@
 import { graphql } from '@/gql'
+import type { SearchQuery, SearchQueryVariables } from '@/gql/graphql'
 import { SearchResultsList } from '@/app/(search)/search-results-list'
 
 const query = graphql(/* GraphQL */ `
@@ -26,23 +27,24 @@ export default async function Home({
   const first = Number(searchParams.perPage) || 12
   const term = searchParams.query
 
-  const { data } = await fetch(process.env.GRAFBASE_API_URL!, {
-    method: 'POST',
-    headers: {
-      'x-api-key': process.env.GRAFBASE_API_KEY!
-    },
-    body: JSON.stringify({
-      query,
-      variables: {
-        query: term,
-        first,
-        ...(brands_in.length && { brands_in })
-      }
-    }),
-    next: { revalidate: 10 }
-  }).then((res) => res.json())
+  const { data }: { data: SearchQuery } = await fetch(
+    process.env.GRAFBASE_API_URL!,
+    {
+      method: 'POST',
+      headers: {
+        'x-api-key': process.env.GRAFBASE_API_KEY!
+      },
+      body: JSON.stringify({
+        query: query as SearchQuery,
+        variables: {
+          query: term,
+          first,
+          ...(brands_in.length && { brands_in })
+        } as SearchQueryVariables
+      }),
+      next: { revalidate: 10 }
+    }
+  ).then((res) => res.json())
 
-  return <SearchResultsList query={data?.productSearch} />
+  return <SearchResultsList query={data?.productSearch || {}} />
 }
-
-export const revalidate = 0

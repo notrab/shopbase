@@ -1,4 +1,8 @@
 import { graphql } from '@/gql'
+import type {
+  GetProductByIdQuery,
+  GetProductByIdQueryVariables
+} from '@/gql/graphql'
 import { notFound } from 'next/navigation'
 
 const query = graphql(/* GraphQL */ `
@@ -23,19 +27,22 @@ export default async function ProductPage({
 }) {
   const { id } = params
 
-  const { data } = await fetch(process.env.GRAFBASE_API_URL!, {
-    method: 'POST',
-    headers: {
-      'x-api-key': process.env.GRAFBASE_API_KEY!
-    },
-    body: JSON.stringify({
-      query,
-      variables: {
-        id
-      }
-    }),
-    next: { revalidate: 10 }
-  }).then((res) => res.json())
+  const { data }: { data: GetProductByIdQuery } = await fetch(
+    process.env.GRAFBASE_API_URL!,
+    {
+      method: 'POST',
+      headers: {
+        'x-api-key': process.env.GRAFBASE_API_KEY!
+      },
+      body: JSON.stringify({
+        query: query as GetProductByIdQuery,
+        variables: {
+          id
+        } as GetProductByIdQueryVariables
+      }),
+      next: { revalidate: 10 }
+    }
+  ).then((res) => res.json())
 
   if (!data?.product) {
     notFound()
